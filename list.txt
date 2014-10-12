@@ -1,0 +1,34 @@
+2013
+OSGi原理与最佳实践
+Python灰帽子: 黑客与逆向
+Oracle Database 11g基础教程
+Oracle优化日记: 一个金牌DBA的故事
+架构之美
+程序员修炼之道: 从小工到
+More Exceptional C++ 中文版: 40个新的工程难题、编程疑问及解决方法
+Oracle DBA手记: 数据库诊断案例与性能优化实践
+C++Templates中文版: the complete guide
+C++必知必会
+
+2014
+实战Nginx: 取代Apache的高性能Web服务器
+白帽子讲Web安全
+C安全编码标准
+C++编程剖析: 问题、方案和设计准则
+高性能MySQL
+Python源码剖析: 深度探索动态语言核心技术
+Redis入门指南
+ACE技术内幕: 深入解析ACE架构设计与实现原理
+虚拟化与云计算
+软件调试实战
+叱咤风云: Tuxedo企业级运维实战
+程序员2012精华本
+RESTful Web Services Cookbook中文版
+BINARY HACKS: 黑客秘笈100选
+程序员2011精华本
+Go语言程序设计
+计算机组成与体系结构性能设计
+重构与模式
+TCP/IP高效编程: 改善网络程序的44个技巧
+Go语言编程
+Java应用架构设计: 模块化模式与OSGi
