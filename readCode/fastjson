@@ -1,0 +1,67 @@
+#fastjson
+
+##1 ThreadLocal
+
+JDK举例为：
+
+     public class SerialNum {
+         // The next serial number to be assigned
+         private static int nextSerialNum = 0;
+
+         private static ThreadLocal serialNum = new ThreadLocal() {
+             protected synchronized Object initialValue() {
+                 return new Integer(nextSerialNum++);
+             }
+         };
+
+         public static int get() {
+             return ((Integer) (serialNum.get())).intValue();
+
+         }
+    }
+
+另外看一个运用ThreadLocal来实现数据库连接Connection对象线程隔离的例子：
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.SQLException;
+     
+    public class ConnectionManager {
+     
+        private static ThreadLocal<Connection> connectionHolder = new ThreadLocal<Connection>() {
+            @Override
+            protected Connection initialValue() {
+                Connection conn = null;
+                try {
+                    conn = DriverManager.getConnection(
+                            "jdbc:mysql://localhost:3306/test", "username",
+                            "password");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return conn;
+            }
+        };
+     
+        public static Connection getConnection() {
+            return connectionHolder.get();
+        }
+     
+        public static void setConnection(Connection conn) {
+            connectionHolder.set(conn);
+        }
+    }
+
+##2 HashMap相关内容
+
+- IdentityHashMap（JDK）
+- HashMap
+- IdentityHashMap（fastjson）
+
+涉及知识点有：
+- **引用相等性**与**对象相等性**
+- factor因子的作用？取值范围。trick：设置一个较大的factor可以避免HashMap resize
+- HashMap的数据结构。IdentityHashMap两个版本的对比，fastjson的实现为了避免resize可能会出现性能退化现象，为了减轻该种可能，设置了一个较大的初始值，这样会造成空间浪费。
+- 线程安全，详细可见coolshell对于hashmap多线程访问时问题的分析。
+
+
