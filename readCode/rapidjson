@@ -1,0 +1,61 @@
+#rapidjson
+
+##mutable
+mutable也是为了突破const的限制而设置的。被mutable修饰的变量，将永远处于可变的状态，即使在一个const函数中。
+
+
+    Ch* Push(size_t count) { return stack_.template Push<Ch>(count); }
+    Ch* Push(size_t count) { return stack_.Push<Ch>(count); }
+
+上面的代码是
+*The template disambiguator*
+
+        template<typename T>
+        struct S {
+            template<typename U> void foo(){}
+        };
+         
+        template<typename T>
+        void bar()
+        {
+            S<T> s;
+            s.foo<T>(); // error: < parsed as less than operator
+            s.template foo<T>(); // OK
+        }
+
+- T::template foo<X>();
+- s.template foo<X>();
+- this->template foo<X>();
+- typename T::template iterator<int>::value_type v;
+
+## #pragma
+\#pragma   warning(push)是保存当前的编译器警告状态；
+
+\#pragma   warning(pop)是恢复原先的警告状态。
+
+例如：
+\#pragma   warning(   push   )
+
+\#pragma   warning(   disable   :   4705   )
+
+\#pragma   warning(   disable   :   4706   )
+
+\#pragma   warning(   disable   :   4707   )
+
+//   Some   code
+
+\#pragma   warning(   pop   )  
+
+这样在编译Some   code部分的代码时，4705、4706、4707三个警告将不会出现。 
+
+    #ifdef _MSC_VER
+    RAPIDJSON_DIAG_PUSH
+    RAPIDJSON_DIAG_OFF(4127) // conditional expression is constant
+
+---->
+
+    \#pragma warning(disable:4127);
+
+
+
+
