@@ -93,6 +93,36 @@
 
 **锤子和钉子**
 
+####实现模式的方式不止一种
+
+>每个模式都描述了在我们的环境中反复出现的问题，并进而叙述对这个问题的解决方案的要素，通过这种方式，能够反复应用洁净间方案，但是具体的实现方式又不相同。
+
+John Vlissides
+>模式的结构图仅仅是一个例子而已，并不是规范，对于这一点，似乎怎么强调都不过分。结构图只是描述了我们最经常见的部分的实现。因此它可能与自己的实现很多的相同点。但是两者的却别也在所难免。
+
+###通过重构实现、趋向和去除模式
+
+| 模式          | 重构实现      | 重构趋向      |重构去除  |
+| ------------- |:-------------:|:-------------:| --------:|
+| Adapter       | 提取Adapter作为统一接口|统一接口| |
+| Builder       |用Builder封装Composite|  | |
+| Collecting Parameter| 将聚集操作搬移到Colletion Parameter|| |
+|Composed Method|组合方法 | | |
+|composite | 用composite替换隐含树| |用Builder封装Composite |
+|Creation Method | 用Creation Method替换构造函数 | | |
+|Decorator | 将装饰功能搬移到Decorator| | |
+|Fatory | 将创建知识移到Factory，用Factory封装类 | | |
+|Interpretor | 用Interpretor替换隐式语言 | | |
+|Iterator | | | 将隐式操作移到Visitor |
+|Observer | 用Observer替换硬编码通知| | |
+|Singleton | 用Singleton限制实例化| | 内联Singleton|
+|State | 用State替换状态改变条件语句| | |
+|Strategy | 用Strategy替换条件逻辑| | |
+|Template Method| 形成Template Method| | |
+|Visitor| 将聚集操作搬移到Visitor| | |
+
+  
+
 
 
 

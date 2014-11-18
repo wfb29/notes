@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>一个Linux内存管理的问题</title>
+</head>
+<body>
+<div class="md-section-divider"></div>
+
+<div class="md-section-divider"></div>
+
+<h1 id="一个linux内存管理的问题" data-anchor-id="p8qa">一个Linux内存管理的问题</h1>
+
+<p data-anchor-id="1ki2"><code>linux</code> <code>c++</code> <code>stl</code></p>
+
+<hr>
+
+<p data-anchor-id="4kxi">首先看代码：</p>
+
+<div class="md-section-divider"></div>
+
+<pre class="prettyprint linenums prettyprinted" data-anchor-id="cz0n"><ol class="linenums"><li class="L0"><code class="language-c++"><span class="pln">    </span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span></code></li><li class="L1"><code class="language-c++"><span class="pln">    </span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;vector&gt;</span></code></li><li class="L2"><code class="language-c++"><span class="pln">    </span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></code></li><li class="L3"><code class="language-c++"></code></li><li class="L4"><code class="language-c++"><span class="pln">    </span><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></code></li><li class="L5"><code class="language-c++"></code></li><li class="L6"><code class="language-c++"><span class="pln">    </span><span class="kwd">int</span><span class="pln"> main</span><span class="pun">()</span></code></li><li class="L7"><code class="language-c++"><span class="pln">    </span><span class="pun">{</span></code></li><li class="L8"><code class="language-c++"><span class="pln">        </span><span class="kwd">int</span><span class="pln"> tmp</span><span class="pun">;</span></code></li><li class="L9"><code class="language-c++"><span class="pln">         vector</span><span class="str">&lt;string&gt;</span><span class="pln"> vecStr</span><span class="pun">;</span></code></li><li class="L0"><code class="language-c++"><span class="pln">         </span><span class="kwd">for</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">10000000</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span></code></li><li class="L1"><code class="language-c++"><span class="pln">         </span><span class="pun">{</span></code></li><li class="L2"><code class="language-c++"><span class="pln">             vecStr</span><span class="pun">.</span><span class="pln">push_back</span><span class="pun">(</span><span class="str">"hello world"</span><span class="pun">);</span></code></li><li class="L3"><code class="language-c++"><span class="pln">         </span><span class="pun">}</span></code></li><li class="L4"><code class="language-c++"><span class="pln">         cout</span><span class="pun">&lt;&lt;</span><span class="str">"now strings in vector"</span><span class="pun">&lt;&lt;</span><span class="pln">endl</span><span class="pun">;</span></code></li><li class="L5"><code class="language-c++"><span class="pln">         cin</span><span class="pun">&gt;&gt;</span><span class="pln">tmp</span><span class="pun">;</span></code></li><li class="L6"><code class="language-c++"></code></li><li class="L7"><code class="language-c++"><span class="pln">         vector</span><span class="str">&lt;string&gt;</span><span class="pun">().</span><span class="pln">swap</span><span class="pun">(</span><span class="pln">vecStr</span><span class="pun">);</span></code></li><li class="L8"><code class="language-c++"><span class="pln">         cout</span><span class="pun">&lt;&lt;</span><span class="str">"now vector is cleard"</span><span class="pun">&lt;&lt;</span><span class="pln">endl</span><span class="pun">;</span></code></li><li class="L9"><code class="language-c++"><span class="pln">         cin</span><span class="pun">&gt;&gt;</span><span class="pln">tmp</span><span class="pun">;</span></code></li><li class="L0"><code class="language-c++"><span class="pln">         </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></code></li><li class="L1"><code class="language-c++"><span class="pln">     </span><span class="pun">}</span></code></li></ol></pre>
+
+<p data-anchor-id="r3cm">这快代码很简单，就是在一个vector中不断的加入string字符串，后面再去释放里面的资源。 <br>
+<strong>注意这里使用了swap去释放vector里的内容</strong></p>
+
+<p data-anchor-id="57cn"><strong>那么问题来了，提问题的同学说在SUSE 10版本下，通过TOP观察到最后一次停住的时候并不会将之前占有的内存完全归还给OS。</strong></p>
+
+<p data-anchor-id="v3qb">原因呢？提问题的同学问是不是STL导致的，如果是的话可能会导致他们项目组放弃使用STL。这个....</p>
+
+<p data-anchor-id="9661">大体看了下问题，初步怀疑两个地方的原因</p>
+
+<ul data-anchor-id="ysbo">
+<li>1 STL内置的内存池</li>
+<li>2 LINUX操作系统管理应用内存方式导致</li>
+</ul>
+
+<p data-anchor-id="rx79">怀疑1的原因是之前翻过侯捷的《STL源码阅读》，STL有自己的内存池管理内存。怀疑2是之前貌似有看到过一些资料有提及LINUX操作系统的应用内存不归还的问题(只是有印象)。</p>
+
+<p data-anchor-id="gv21">接下来就是验证下是不是这连个原因了。</p>
+
+<div class="md-section-divider"></div>
+
+<h3 id="1-验证是不是stl内存池问题" data-anchor-id="jl9n">1 验证是不是STL内存池问题</h3>
+
+<p data-anchor-id="s00t">首先将这快代码在VS2008下跑了一遍，发现vector swap之后，应用内存释放了！！！应用占用的内存下去了！！！</p>
+
+<p data-anchor-id="jmd4">考虑到不同系统的STL实现不同，又有这么不同的表现，那么很有可能是STL的问题啊。 <br>
+接下来考虑如何验证时STL内存池的问题。 <br>
+STL的Allocator是用来管理STL的内存分配器，可以考虑用一个简单的Allocator实现，直接对内存进行malloc和free。（可以查下资料看看如何实现一个Allocator）。</p>
+
+<p data-anchor-id="4ekt">如果是STL内存池机制导致的，那么应用自己实现的Allocator之后按说应该不会出现内存不释放的情况了。 <br>
+但是实验的结果很失望，即使直接使用使用malloc和free，系统还是不会释放内存。</p>
+
+<div class="md-section-divider"></div>
+
+<h3 id="2-验证是不是linux不归还系统内存的原因" data-anchor-id="9qap">2 验证是不是LINUX不归还系统内存的原因</h3>
+
+<div class="md-section-divider"></div>
+
+<pre class="prettyprint linenums prettyprinted" data-anchor-id="wjs4"><ol class="linenums"><li class="L0"><code class="language-c++"><span class="pln">    </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">pchar </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">1000000</span><span class="pun">];</span></code></li><li class="L1"><code class="language-c++"><span class="pln">    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">1000000</span><span class="pun">;</span><span class="pln"> </span><span class="pun">++</span><span class="pln">i</span><span class="pun">)</span></code></li><li class="L2"><code class="language-c++"><span class="pln">    </span><span class="pun">{</span></code></li><li class="L3"><code class="language-c++"><span class="pln">        </span><span class="pun">*(</span><span class="pln">pchar</span><span class="pun">+</span><span class="pln">i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">'a'</span><span class="pun">;</span></code></li><li class="L4"><code class="language-c++"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L5"><code class="language-c++"><span class="pln">    </span><span class="kwd">delete</span><span class="pln"> pchar</span><span class="pun">;</span></code></li></ol></pre>
+
+<p data-anchor-id="z62w">上面这段代码在LINUX下，跑完DELETE之后内存是释放给系统的。</p>
+
+<p data-anchor-id="l99h">那么就很奇怪了。不是STL的原因，应用有的情况会释放内存，某些情况又不释放内存，很奇怪。</p>
+
+<p data-anchor-id="6cvs">细想一下，两种情况不同，第一种情况是不断的申请小块内存（用完后不释放），第二种情况是一下申请大块内存（用完后释放）。其实还是有规律的，联想一下肯定是LINUX内存管理的策略，那么将搜索关键词改为LINUX内存管理。查找到一片BLOG： <br>
+<a href="http://www.cnblogs.com/lookof/archive/2013/03/26/2981768.html" target="_blank">http://www.cnblogs.com/lookof/archive/2013/03/26/2981768.html</a> <br>
+里面介绍的场景跟这个很类似。 <br>
+试了一下malloc_trim，搞定！</p>
+
+<p data-anchor-id="r7vu">在LINUX下，内存是用户程序--&gt;glibc --&gt;linux kernel，是中间的glibc“捣鬼”的。跟公司同事讨论，现有系统在AIX上会出现占用内存无法释放的情况，也有一个类似的函数disclaim，当然，某些场景下只用它是满足不了的，进一步如何处理就不说了。</p>
+
+<p data-anchor-id="ueyj">关于glibc的内存管理由于不熟悉，这里也不在介绍了，别处的资料大把大把的，gogogo！</p>
+</body>
+</html>

@@ -54,8 +54,29 @@ mutable也是为了突破const的限制而设置的。被mutable修饰的变量�
 
 ---->
 
-    \#pragma warning(disable:4127);
+    #pragma warning(disable:4127);
 
+对应到GCC中：
 
+    #pragma GCC diagnostic error "-Wuninitialized"
+    foo(a);                       /* error is given for this one */
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wuninitialized"
+    foo(b);                       /* no diagnostic for this one */
+    #pragma GCC diagnostic pop
+    foo(c);                       /* error is given for this one */
+    #pragma GCC diagnostic pop
+    foo(d);                       /* depends on command-line options */
 
+    RAPIDJSON_DIAG_OFF(effc++)
 
+-Weffc++ (C++ only)
+Warn about violations of various style guidelines from Scott Meyers' Effective C++ books. If you use this option, you should be aware that the standard library headers do not obey all of these guidelines; you can use `grep -v' to filter out those warnings.
+
+##枚举与类型
+
+    //用枚举干什么，用枚举连接值和类型
+    template <int N> struct IntegralC { enum { Value = N }; };
+    template <bool Cond> struct BoolType : IntegralC<Cond> {};
+    struct TrueType : BoolType<true> {};
+    struct FalseType : BoolType<false> {};
