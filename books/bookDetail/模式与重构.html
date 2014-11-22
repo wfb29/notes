@@ -1,0 +1,1329 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body .octicon {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .h {
+  color: #333;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs,
+.markdown-body .highlight .cp .h {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #000;
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+}
+
+.markdown-body .highlight .pl-coc,
+.markdown-body .highlight .pl-entm,
+.markdown-body .highlight .pl-eoa,
+.markdown-body .highlight .pl-mai .pl-sf,
+.markdown-body .highlight .pl-pdv,
+.markdown-body .highlight .pl-sc,
+.markdown-body .highlight .pl-sr,
+.markdown-body .highlight .pl-v,
+.markdown-body .highlight .pl-vpf {
+  color: #0086b3;
+}
+
+.markdown-body .highlight .pl-eoac,
+.markdown-body .highlight .pl-mdht,
+.markdown-body .highlight .pl-mi1,
+.markdown-body .highlight .pl-mri,
+.markdown-body .highlight .pl-va,
+.markdown-body .highlight .pl-vpu {
+  color: #008080;
+}
+
+.markdown-body .highlight .pl-c,
+.markdown-body .highlight .pl-pdc {
+  color: #b4b7b4;
+  font-style: italic;
+}
+
+.markdown-body .highlight .pl-k,
+.markdown-body .highlight .pl-ko,
+.markdown-body .highlight .pl-kolp,
+.markdown-body .highlight .pl-mc,
+.markdown-body .highlight .pl-mr,
+.markdown-body .highlight .pl-ms,
+.markdown-body .highlight .pl-s,
+.markdown-body .highlight .pl-sok,
+.markdown-body .highlight .pl-st {
+  color: #6e5494;
+}
+
+.markdown-body .highlight .pl-ef,
+.markdown-body .highlight .pl-enf,
+.markdown-body .highlight .pl-enm,
+.markdown-body .highlight .pl-entc,
+.markdown-body .highlight .pl-eoi,
+.markdown-body .highlight .pl-sf,
+.markdown-body .highlight .pl-smc {
+  color: #d12089;
+}
+
+.markdown-body .highlight .pl-ens,
+.markdown-body .highlight .pl-eoai,
+.markdown-body .highlight .pl-kos,
+.markdown-body .highlight .pl-mh .pl-pdh,
+.markdown-body .highlight .pl-mp,
+.markdown-body .highlight .pl-pde,
+.markdown-body .highlight .pl-stp {
+  color: #458;
+}
+
+.markdown-body .highlight .pl-enti {
+  color: #d12089;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-cce,
+.markdown-body .highlight .pl-enc,
+.markdown-body .highlight .pl-kou,
+.markdown-body .highlight .pl-mq {
+  color: #f93;
+}
+
+.markdown-body .highlight .pl-mp1 .pl-sf {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-cos,
+.markdown-body .highlight .pl-ent,
+.markdown-body .highlight .pl-md,
+.markdown-body .highlight .pl-mdhf,
+.markdown-body .highlight .pl-ml,
+.markdown-body .highlight .pl-pdc1,
+.markdown-body .highlight .pl-pds,
+.markdown-body .highlight .pl-s1,
+.markdown-body .highlight .pl-scp,
+.markdown-body .highlight .pl-sol {
+  color: #df5000;
+}
+
+.markdown-body .highlight .pl-c1,
+.markdown-body .highlight .pl-cn,
+.markdown-body .highlight .pl-pse,
+.markdown-body .highlight .pl-pse .pl-s2,
+.markdown-body .highlight .pl-vi {
+  color: #a31515;
+}
+
+.markdown-body .highlight .pl-mb,
+.markdown-body .highlight .pl-pdb {
+  color: #df5000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-mi,
+.markdown-body .highlight .pl-pdi {
+  color: #6e5494;
+  font-style: italic;
+}
+
+.markdown-body .highlight .pl-ms1 {
+  background-color: #f5f5f5;
+}
+
+.markdown-body .highlight .pl-mdh,
+.markdown-body .highlight .pl-mdi {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-mdr {
+  color: #0086b3;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-s2 {
+  color: #333;
+}
+
+.markdown-body .highlight .pl-ii {
+  background-color: #df5000;
+  color: #fff;
+}
+
+.markdown-body .highlight .pl-ib {
+  background-color: #f93;
+}
+
+.markdown-body .highlight .pl-id {
+  background-color: #a31515;
+  color: #fff;
+}
+
+.markdown-body .highlight .pl-iu {
+  background-color: #b4b7b4;
+}
+
+.markdown-body .highlight .pl-mo {
+  color: #969896;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}</style><title>模式与重构</title></head><body><article class="markdown-body"><h1>
+<a id="user-content-模式与重构" class="anchor" href="#%E6%A8%A1%E5%BC%8F%E4%B8%8E%E9%87%8D%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>模式与重构</h1>
+
+<h2>
+<a id="user-content-1-书的写作缘由" class="anchor" href="#1-%E4%B9%A6%E7%9A%84%E5%86%99%E4%BD%9C%E7%BC%98%E7%94%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 书的写作缘由</h2>
+
+<p>不能正确的使用模式。</p>
+
+<p>通过重构实现模式、趋向模式、去除模式，而不是预先设计中使用模式，不过早的使用模式，避免过度设计</p>
+
+<h3>
+<a id="user-content-过度设计" class="anchor" href="#%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>过度设计</h3>
+
+<p>代码的灵活性超出所需</p>
+
+<ul>
+<li>预计错误，则浪费时间和金钱</li>
+<li>如果预期不会出现，那么产生冗余代码，维护困难</li>
+<li>过度设计的代码会影响生产率</li>
+</ul>
+
+<h3>
+<a id="user-content-模式万灵丹" class="anchor" href="#%E6%A8%A1%E5%BC%8F%E4%B8%87%E7%81%B5%E4%B8%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>模式万灵丹</h3>
+
+<blockquote>
+<p>如果你手里只有一把锤子,你就会把所有的问题都看成钉子</p>
+</blockquote>
+
+<h3>
+<a id="user-content-设计不足" class="anchor" href="#%E8%AE%BE%E8%AE%A1%E4%B8%8D%E8%B6%B3" aria-hidden="true"><span class="octicon octicon-link"></span></a>设计不足</h3>
+
+<p><strong>设计不足</strong>比过度设计要常见的多，开发的软件设计不充分。</p>
+
+<ul>
+<li>程序员受困于时间进度，没用时间进行重构</li>
+<li>程序员在何为好的软件设计方面知识不足</li>
+<li>被要求在既有系统中快速添加功能</li>
+<li>被迫同时进行太多项目</li>
+</ul>
+
+<p>两点：<strong>进度</strong>和<strong>能力</strong></p>
+
+<p><strong>后果：交付速度越来越慢，质量越来越差</strong></p>
+
+<h3>
+<a id="user-content-测试驱动与持续重构" class="anchor" href="#%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E4%B8%8E%E6%8C%81%E7%BB%AD%E9%87%8D%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>测试驱动与持续重构</h3>
+
+<h3>
+<a id="user-content-重构与模式" class="anchor" href="#%E9%87%8D%E6%9E%84%E4%B8%8E%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>重构与模式</h3>
+
+<blockquote>
+<p>设计模式记录了许多重构产生的设计结构，...设计模式为重构提供了目标</p>
+
+<p>模式和重构之间存在着天然关系，模式想达到的目的地，而重构则是其他地方抵达这个目的地的条条道路。</p>
+</blockquote>
+
+<h3>
+<a id="user-content-演进式设计" class="anchor" href="#%E6%BC%94%E8%BF%9B%E5%BC%8F%E8%AE%BE%E8%AE%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>演进式设计</h3>
+
+<p>通过重构实现实现模式或者重构趋向于模式。</p>
+
+<h2>
+<a id="user-content-2-重构" class="anchor" href="#2-%E9%87%8D%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>2 重构</h2>
+
+<h3>
+<a id="user-content-何谓重构" class="anchor" href="#%E4%BD%95%E8%B0%93%E9%87%8D%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>何谓重构</h3>
+
+<p>重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低。</p>
+
+<p>去除重复、简化复杂逻辑、澄清模糊代码</p>
+
+<h3>
+<a id="user-content-重构的动机" class="anchor" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E5%8A%A8%E6%9C%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>重构的动机</h3>
+
+<ul>
+<li>使新代码更易扩展</li>
+<li>改善现有代码设计</li>
+<li>更透彻的理解代码</li>
+<li>提高编程趣味性</li>
+</ul>
+
+<h3>
+<a id="user-content-众目睽睽" class="anchor" href="#%E4%BC%97%E7%9B%AE%E7%9D%BD%E7%9D%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>众目睽睽</h3>
+
+<p>对代码而言，要得到最佳的重构结果，需要多人的帮助。</p>
+
+<h3>
+<a id="user-content-代码可读性" class="anchor" href="#%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码可读性</h3>
+
+<h3>
+<a id="user-content-保持代码整洁" class="anchor" href="#%E4%BF%9D%E6%8C%81%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>保持代码整洁</h3>
+
+<h3>
+<a id="user-content-循序渐进" class="anchor" href="#%E5%BE%AA%E5%BA%8F%E6%B8%90%E8%BF%9B" aria-hidden="true"><span class="octicon octicon-link"></span></a>循序渐进</h3>
+
+<p>一点点来，步子大了，容易扯着淡</p>
+
+<h3>
+<a id="user-content-演进式设计-1" class="anchor" href="#%E6%BC%94%E8%BF%9B%E5%BC%8F%E8%AE%BE%E8%AE%A1-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>演进式设计</h3>
+
+<ul>
+<li>成立一个小组</li>
+<li>用应用需求驱动框架</li>
+<li>通过重构，持续改进应用和框架</li>
+</ul>
+
+<h3>
+<a id="user-content-复合重构" class="anchor" href="#%E5%A4%8D%E5%90%88%E9%87%8D%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合重构</h3>
+
+<p><strong>复合重构（composite refactoring）</strong>是由多个低层次的重构组成的高层次重构。如提炼方法、上移方法、提炼类、搬移方法等。</p>
+
+<h3>
+<a id="user-content-复合重构的优点" class="anchor" href="#%E5%A4%8D%E5%90%88%E9%87%8D%E6%9E%84%E7%9A%84%E4%BC%98%E7%82%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合重构的优点</h3>
+
+<ul>
+<li>描述了重构顺序的完整计划</li>
+<li>能够体现不明显的设计方向</li>
+<li>促进对实现模式的深入思考</li>
+</ul>
+
+<h2>
+<a id="user-content-3-模式" class="anchor" href="#3-%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>3 模式</h2>
+
+<h3>
+<a id="user-content-何谓模式" class="anchor" href="#%E4%BD%95%E8%B0%93%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>何谓模式</h3>
+
+<p>每个模式都有三部分组成：表达的是某一场景下、一个问题以及解决问题的方案之前的关系。</p>
+
+<h3>
+<a id="user-content-模式痴迷" class="anchor" href="#%E6%A8%A1%E5%BC%8F%E7%97%B4%E8%BF%B7" aria-hidden="true"><span class="octicon octicon-link"></span></a>模式痴迷</h3>
+
+<p><strong>锤子和钉子</strong></p>
+
+<h4>
+<a id="user-content-实现模式的方式不止一种" class="anchor" href="#%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B9%E5%BC%8F%E4%B8%8D%E6%AD%A2%E4%B8%80%E7%A7%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>实现模式的方式不止一种</h4>
+
+<blockquote>
+<p>每个模式都描述了在我们的环境中反复出现的问题，并进而叙述对这个问题的解决方案的要素，通过这种方式，能够反复应用洁净间方案，但是具体的实现方式又不相同。</p>
+</blockquote>
+
+<p>John Vlissides</p>
+
+<blockquote>
+<p>模式的结构图仅仅是一个例子而已，并不是规范，对于这一点，似乎怎么强调都不过分。结构图只是描述了我们最经常见的部分的实现。因此它可能与自己的实现很多的相同点。但是两者的却别也在所难免。</p>
+</blockquote>
+
+<h3>
+<a id="user-content-通过重构实现趋向和去除模式" class="anchor" href="#%E9%80%9A%E8%BF%87%E9%87%8D%E6%9E%84%E5%AE%9E%E7%8E%B0%E8%B6%8B%E5%90%91%E5%92%8C%E5%8E%BB%E9%99%A4%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>通过重构实现、趋向和去除模式</h3>
+
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th align="center">重构实现</th>
+<th align="center">重构趋向</th>
+<th align="right">重构去除</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adapter</td>
+<td align="center">提取Adapter作为统一接口</td>
+<td align="center">统一接口</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Builder</td>
+<td align="center">用Builder封装Composite</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Collecting Parameter</td>
+<td align="center">将聚集操作搬移到Colletion Parameter</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Composed Method</td>
+<td align="center">组合方法</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>composite</td>
+<td align="center">用composite替换隐含树</td>
+<td align="center"></td>
+<td align="right">用Builder封装Composite</td>
+</tr>
+<tr>
+<td>Creation Method</td>
+<td align="center">用Creation Method替换构造函数</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Decorator</td>
+<td align="center">将装饰功能搬移到Decorator</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Fatory</td>
+<td align="center">将创建知识移到Factory，用Factory封装类</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Interpretor</td>
+<td align="center">用Interpretor替换隐式语言</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Iterator</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="right">将隐式操作移到Visitor</td>
+</tr>
+<tr>
+<td>Observer</td>
+<td align="center">用Observer替换硬编码通知</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Singleton</td>
+<td align="center">用Singleton限制实例化</td>
+<td align="center"></td>
+<td align="right">内联Singleton</td>
+</tr>
+<tr>
+<td>State</td>
+<td align="center">用State替换状态改变条件语句</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Strategy</td>
+<td align="center">用Strategy替换条件逻辑</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Template Method</td>
+<td align="center">形成Template Method</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>Visitor</td>
+<td align="center">将聚集操作搬移到Visitor</td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="user-content-模式是否会使代码更加复杂" class="anchor" href="#%E6%A8%A1%E5%BC%8F%E6%98%AF%E5%90%A6%E4%BC%9A%E4%BD%BF%E4%BB%A3%E7%A0%81%E6%9B%B4%E5%8A%A0%E5%A4%8D%E6%9D%82" aria-hidden="true"><span class="octicon octicon-link"></span></a>模式是否会使代码更加复杂</h3>
+
+<p>通常，实现模式应该有助于去除重复代码、简化逻辑、说明意图和提高灵活性，但是，人民对模式的认识又对基于模式的重构起决定作用。有些模式会是的代码过分复杂，需要进一步重构。  </p>
+
+<h2>
+<a id="user-content-4-代码坏味道" class="anchor" href="#4-%E4%BB%A3%E7%A0%81%E5%9D%8F%E5%91%B3%E9%81%93" aria-hidden="true"><span class="octicon octicon-link"></span></a>4 代码坏味道</h2>
+
+<p><a href="https://raw.githubusercontent.com/fbwang/notes/master/books/bookDetail/%E4%BB%A3%E7%A0%81%E5%9D%8F%E5%91%B3%E9%81%93.jpeg" target="_blank"><img src="https://raw.githubusercontent.com/fbwang/notes/master/books/bookDetail/%E4%BB%A3%E7%A0%81%E5%9D%8F%E5%91%B3%E9%81%93.jpeg" alt="代码坏味道" style="max-width:100%;"></a></p>
+
+<p>基本类型的另外一种解决方案，是从fastjson里看到的泛型的用法，代码如下：</p>
+
+<pre><code>public enum Feature {
+
+AutoCloseSource,
+
+AllowComment
+;
+
+private Feature(){
+    mask = (1 &lt;&lt; ordinal());
+}
+
+private final int mask;
+
+public final int getMask() {
+    return mask;
+}
+
+public static boolean isEnabled(int features, Feature feature) {
+    return (features &amp; feature.getMask()) != 0;
+}
+
+public static int config(int features, Feature feature, boolean state) {
+    if (state) {
+        features |= feature.getMask();
+    } else {
+        features &amp;= ~feature.getMask();
+    }
+
+    return features;
+}
+</code></pre>
+
+<p>}</p>
+
+<p>用JDK的ordinal方法和一个内置的成员变量mask来做配置数据用。
+java.lang.Enum.ordinal()方法返回此枚举常量的序数（其枚举声明中的位置，其中初始常量分配的序数为零）。</p>
+
+<h3>
+<a id="user-content-怪异的解决方案" class="anchor" href="#%E6%80%AA%E5%BC%82%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>怪异的解决方案</h3>
+
+<p>指在同一系统中使用不同的方法解决同一类问题。</p>
+
+<h2>
+<a id="user-content-6-创建" class="anchor" href="#6-%E5%88%9B%E5%BB%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>6 创建</h2>
+
+<h3>
+<a id="user-content-61-creation-method" class="anchor" href="#61-creation-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.1 Creation Method</h3>
+
+<p>用能够说明意图的Creation Method代替构造函数。
+优点：</p>
+
+<ul>
+<li>能够更好的表达所创建的实例的种类。</li>
+<li>避免构造函数的局限，如两个函数的参数个数和类型不能相同。</li>
+<li>更容易发现无意义的创建</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>创建方式非标准化。有些类用的new实例化，用的Creation Method</li>
+</ul>
+
+<p>思考:
+相关构造函数私有化
+相关类的构造函数私有化，统一提供构方（借用C++友元）...额，这是工厂</p>
+
+<h3>
+<a id="user-content-62-将创建知识迁移到factory" class="anchor" href="#62-%E5%B0%86%E5%88%9B%E5%BB%BA%E7%9F%A5%E8%AF%86%E8%BF%81%E7%A7%BB%E5%88%B0factory" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2 将创建知识迁移到Factory</h3>
+
+<p>工厂方法模式  定义一个接口用于创建对象，但是让子类决定初始化哪个类。工厂方法把一个类的初始化下放到子类。</p>
+
+<p>简单工厂模式  工厂为具体工厂，产品为抽象产品，由工厂实例创建产品实例。</p>
+
+<p>抽象工厂模式  为一个产品族提供了统一的创建接口。当需要这个产品族的某一系列的时候，可以从抽象工厂中选出相应的系列创建一个具体的工厂类。</p>
+
+<h3>
+<a id="user-content-63用factory封装类" class="anchor" href="#63%E7%94%A8factory%E5%B0%81%E8%A3%85%E7%B1%BB" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.3用Factory封装类</h3>
+
+<p>把类的构造函数声明为非公共的，通过Factory来创建他们的实例。</p>
+
+<h3>
+<a id="user-content-64用factory引入多态创建" class="anchor" href="#64%E7%94%A8factory%E5%BC%95%E5%85%A5%E5%A4%9A%E6%80%81%E5%88%9B%E5%BB%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.4用Factory引入多态创建</h3>
+
+<h3>
+<a id="user-content-65用builder封装composite" class="anchor" href="#65%E7%94%A8builder%E5%B0%81%E8%A3%85composite" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.5用Builder封装Composite</h3>
+
+<p>通过Builder处理构造细节来简化构造过程。</p>
+
+<ul>
+<li>简化了构造Compisite的客户代码</li>
+<li>减少了创建composite的重复和容易出错的本性</li>
+<li>在客户代码和composite之间实现了松耦合</li>
+<li>允许对已封装的composite活复杂对象创建不同的表示</li>
+<li>接口可能不会很清楚的表达意图（不太认同）</li>
+</ul>
+
+<h3>
+<a id="user-content-66内联singleton" class="anchor" href="#66%E5%86%85%E8%81%94singleton" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.6内联Singleton？？？？</h3>
+
+<h2>
+<a id="user-content-7-简化" class="anchor" href="#7-%E7%AE%80%E5%8C%96" aria-hidden="true"><span class="octicon octicon-link"></span></a>7 简化</h2>
+
+<h3>
+<a id="user-content-71-组合方法" class="anchor" href="#71-%E7%BB%84%E5%90%88%E6%96%B9%E6%B3%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.1 组合方法</h3>
+
+<p>提取小方法</p>
+
+<h3>
+<a id="user-content-72-用strategy替换条件逻辑" class="anchor" href="#72-%E7%94%A8strategy%E6%9B%BF%E6%8D%A2%E6%9D%A1%E4%BB%B6%E9%80%BB%E8%BE%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.2 用strategy替换条件逻辑</h3>
+
+<p>策略模式</p>
+
+<h3>
+<a id="user-content-73-将装饰功能迁移到decorator" class="anchor" href="#73-%E5%B0%86%E8%A3%85%E9%A5%B0%E5%8A%9F%E8%83%BD%E8%BF%81%E7%A7%BB%E5%88%B0decorator" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.3 将装饰功能迁移到Decorator</h3>
+
+<p>Java的流相关类的封装是Decorator的代表</p>
+
+<h3>
+<a id="user-content-74-用state替换状态转换条件语句" class="anchor" href="#74-%E7%94%A8state%E6%9B%BF%E6%8D%A2%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.4 用State替换状态转换条件语句</h3>
+
+<h3>
+<a id="user-content-75-用composite替换隐含树" class="anchor" href="#75-%E7%94%A8composite%E6%9B%BF%E6%8D%A2%E9%9A%90%E5%90%AB%E6%A0%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.5 用Composite替换隐含树</h3>
+
+<h3>
+<a id="user-content-76-用commond替换条件调度程序" class="anchor" href="#76-%E7%94%A8commond%E6%9B%BF%E6%8D%A2%E6%9D%A1%E4%BB%B6%E8%B0%83%E5%BA%A6%E7%A8%8B%E5%BA%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.6 用Commond替换条件调度程序</h3>
+
+<h2>
+<a id="user-content-8-泛化" class="anchor" href="#8-%E6%B3%9B%E5%8C%96" aria-hidden="true"><span class="octicon octicon-link"></span></a>8 泛化</h2>
+
+<h3>
+<a id="user-content-81-形成template-method" class="anchor" href="#81-%E5%BD%A2%E6%88%90template-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.1 形成Template Method</h3>
+
+<p>父类提供Template Method，子类实现变化</p>
+
+<h3>
+<a id="user-content-82-提取composite" class="anchor" href="#82-%E6%8F%90%E5%8F%96composite" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.2 提取Composite</h3>
+
+<p>提取一个实现该Composite的超类。</p>
+
+<ul>
+<li>去除重复的类存储逻辑和处理逻辑</li>
+<li>有效的表达类处理逻辑的可继承性</li>
+</ul>
+
+<h3>
+<a id="user-content-83-用composite替换一多之分" class="anchor" href="#83-%E7%94%A8composite%E6%9B%BF%E6%8D%A2%E4%B8%80%E5%A4%9A%E4%B9%8B%E5%88%86" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.3 用Composite替换一\多之分</h3>
+
+<h3>
+<a id="user-content-84-用observer替换硬编码的通知" class="anchor" href="#84-%E7%94%A8observer%E6%9B%BF%E6%8D%A2%E7%A1%AC%E7%BC%96%E7%A0%81%E7%9A%84%E9%80%9A%E7%9F%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.4 用Observer替换硬编码的通知</h3>
+
+<h3>
+<a id="user-content-85-通过adapter统一接口" class="anchor" href="#85-%E9%80%9A%E8%BF%87adapter%E7%BB%9F%E4%B8%80%E6%8E%A5%E5%8F%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.5 通过Adapter统一接口</h3>
+
+<h3>
+<a id="user-content-86-提取adapter" class="anchor" href="#86-%E6%8F%90%E5%8F%96adapter" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.6 提取Adapter</h3>
+
+<h3>
+<a id="user-content-87-用interpreer替换隐式语言" class="anchor" href="#87-%E7%94%A8interpreer%E6%9B%BF%E6%8D%A2%E9%9A%90%E5%BC%8F%E8%AF%AD%E8%A8%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.7 用Interpreer替换隐式语言</h3>
+
+<h2>
+<a id="user-content-9-保护" class="anchor" href="#9-%E4%BF%9D%E6%8A%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>9 保护</h2>
+
+<h3>
+<a id="user-content-91-用类替换类型代码" class="anchor" href="#91-%E7%94%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.1 用类替换类型代码</h3>
+
+<h3>
+<a id="user-content-92-用singleton限制实例化" class="anchor" href="#92-%E7%94%A8singleton%E9%99%90%E5%88%B6%E5%AE%9E%E4%BE%8B%E5%8C%96" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.2 用Singleton限制实例化</h3>
+
+<h3>
+<a id="user-content-93-引入null-object" class="anchor" href="#93-%E5%BC%95%E5%85%A5null-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.3 引入Null Object</h3>
+
+<h2>
+<a id="user-content-10-聚集操作" class="anchor" href="#10-%E8%81%9A%E9%9B%86%E6%93%8D%E4%BD%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>10 聚集操作</h2>
+
+<h3>
+<a id="user-content-101-聚集操作迁移到collection-parameter" class="anchor" href="#101-%E8%81%9A%E9%9B%86%E6%93%8D%E4%BD%9C%E8%BF%81%E7%A7%BB%E5%88%B0collection-parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>10.1 聚集操作迁移到Collection parameter</h3>
+
+<p>Collection parameter是一个对象，将它传入不同的方法中，从方法中收集信息。</p>
+
+<h3>
+<a id="user-content-102-聚集操作迁移到visitor" class="anchor" href="#102-%E8%81%9A%E9%9B%86%E6%93%8D%E4%BD%9C%E8%BF%81%E7%A7%BB%E5%88%B0visitor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10.2 聚集操作迁移到Visitor</h3>
+
+<p>visitor模式</p>
+
+<h2>
+<a id="user-content-11实用重构" class="anchor" href="#11%E5%AE%9E%E7%94%A8%E9%87%8D%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>11实用重构</h2>
+
+<h3>
+<a id="user-content-111-链构造函数" class="anchor" href="#111-%E9%93%BE%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>11.1 链构造函数</h3>
+
+<h3>
+<a id="user-content-112-统一接口" class="anchor" href="#112-%E7%BB%9F%E4%B8%80%E6%8E%A5%E5%8F%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>11.2 统一接口</h3>
+
+<h3>
+<a id="user-content-113-提取参数" class="anchor" href="#113-%E6%8F%90%E5%8F%96%E5%8F%82%E6%95%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>11.3 提取参数</h3>
+</article></body></html>

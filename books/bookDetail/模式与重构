@@ -121,7 +121,146 @@ John Vlissides
 |Template Method| 形成Template Method| | |
 |Visitor| 将聚集操作搬移到Visitor| | |
 
-  
+###模式是否会使代码更加复杂
+通常，实现模式应该有助于去除重复代码、简化逻辑、说明意图和提高灵活性，但是，人民对模式的认识又对基于模式的重构起决定作用。有些模式会是的代码过分复杂，需要进一步重构。  
+
+##4 代码坏味道
+
+
+
+![代码坏味道](https://raw.githubusercontent.com/fbwang/notes/master/books/bookDetail/%E4%BB%A3%E7%A0%81%E5%9D%8F%E5%91%B3%E9%81%93.jpeg)
+
+基本类型的另外一种解决方案，是从fastjson里看到的泛型的用法，代码如下：
+   
+    public enum Feature {
+
+    AutoCloseSource,
+
+    AllowComment
+    ;
+
+    private Feature(){
+        mask = (1 << ordinal());
+    }
+
+    private final int mask;
+
+    public final int getMask() {
+        return mask;
+    }
+
+    public static boolean isEnabled(int features, Feature feature) {
+        return (features & feature.getMask()) != 0;
+    }
+
+    public static int config(int features, Feature feature, boolean state) {
+        if (state) {
+            features |= feature.getMask();
+        } else {
+            features &= ~feature.getMask();
+        }
+
+        return features;
+    }
+}
+
+用JDK的ordinal方法和一个内置的成员变量mask来做配置数据用。
+java.lang.Enum.ordinal()方法返回此枚举常量的序数（其枚举声明中的位置，其中初始常量分配的序数为零）。
+
+###怪异的解决方案
+指在同一系统中使用不同的方法解决同一类问题。
+
+##6 创建
+
+###6.1 Creation Method
+
+用能够说明意图的Creation Method代替构造函数。
+优点：
+- 能够更好的表达所创建的实例的种类。
+- 避免构造函数的局限，如两个函数的参数个数和类型不能相同。
+- 更容易发现无意义的创建
+
+缺点：
+- 创建方式非标准化。有些类用的new实例化，用的Creation Method
+ 
+思考:
+相关构造函数私有化
+相关类的构造函数私有化，统一提供构方（借用C++友元）...额，这是工厂
+
+
+###6.2 将创建知识迁移到Factory
+
+工厂方法模式  定义一个接口用于创建对象，但是让子类决定初始化哪个类。工厂方法把一个类的初始化下放到子类。
+
+简单工厂模式  工厂为具体工厂，产品为抽象产品，由工厂实例创建产品实例。
+
+抽象工厂模式  为一个产品族提供了统一的创建接口。当需要这个产品族的某一系列的时候，可以从抽象工厂中选出相应的系列创建一个具体的工厂类。
+
+###6.3用Factory封装类
+把类的构造函数声明为非公共的，通过Factory来创建他们的实例。
+
+###6.4用Factory引入多态创建
+
+###6.5用Builder封装Composite
+
+通过Builder处理构造细节来简化构造过程。
+
+- 简化了构造Compisite的客户代码
+- 减少了创建composite的重复和容易出错的本性
+- 在客户代码和composite之间实现了松耦合
+- 允许对已封装的composite活复杂对象创建不同的表示
+- 接口可能不会很清楚的表达意图（不太认同）
+
+###6.6内联Singleton？？？？
+
+##7 简化
+
+###7.1 组合方法
+提取小方法
+
+###7.2 用strategy替换条件逻辑
+策略模式
+
+###7.3 将装饰功能迁移到Decorator
+Java的流相关类的封装是Decorator的代表
+
+###7.4 用State替换状态转换条件语句
+###7.5 用Composite替换隐含树
+###7.6 用Commond替换条件调度程序
+
+##8 泛化
+###8.1 形成Template Method
+父类提供Template Method，子类实现变化
+
+###8.2 提取Composite
+提取一个实现该Composite的超类。
+- 去除重复的类存储逻辑和处理逻辑
+- 有效的表达类处理逻辑的可继承性
+
+###8.3 用Composite替换一\多之分
+###8.4 用Observer替换硬编码的通知
+###8.5 通过Adapter统一接口
+###8.6 提取Adapter
+###8.7 用Interpreer替换隐式语言
+
+##9 保护
+
+###9.1 用类替换类型代码
+###9.2 用Singleton限制实例化
+###9.3 引入Null Object
+
+##10 聚集操作
+###10.1 聚集操作迁移到Collection parameter
+Collection parameter是一个对象，将它传入不同的方法中，从方法中收集信息。
+###10.2 聚集操作迁移到Visitor
+
+visitor模式
+
+##11实用重构
+###11.1 链构造函数
+###11.2 统一接口
+###11.3 提取参数
+
 
 
 
