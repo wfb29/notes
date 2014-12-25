@@ -1,0 +1,190 @@
+##基本套接字API
+
+    #include <sys/socket.h> /* unix */
+    #include <winsock2.h> /* windows */
+    SOCKET socket(int domain, int type, int protocol);
+
+domain
+- AF_INET 因特网
+- AF_LOCAL 同一台机器上的IPC
+
+type
+- SOCK_STREAM 可靠，全双工，面向连接的字节流--TCP
+- SOCK_DGRAM 不可靠，尽力而为的数据报服务--UDP
+- SOCK_LAW 允许对IP层的某些数据报进行访问，用于一些特殊目的，比如ICMP
+
+protocol
+说明了套接字上使用哪种协议，通常都是由套接字隐式说明，被置为0
+
+    #include <sys/socket.h> /* unix*/
+    #include <winsock2.h>  /* windows*/
+    int connect(SOCKET s, const struct sockaddr *peer, int peer_fen);
+            成功返回0，失败返回-1或非0值
+    int recv(SOCKET s, void *buf, size_t len, int flags);
+    int send(SOCKET s, const void *buf, size_t len, int flags);
+
+UNIX下，可以直接使用read，write，Windows不行
+
+flags
+- MSG_OOB 将此标记置位时，会发送或读取紧急数据
+- MSG_PEEK 这个标记用来查看输入数据，但不会将其从接收缓冲区中删除，执行调用之后，解析下来的读取操作依然可以读到这些数据。
+- MSG_DONTROUTE 这个标记会使内核绕过选路函数，通常只有选路函数使用，用于诊断。
+
+recvfrom和sendto允许在发送的时候指定地址，在读取的时候将地址解析出来。
+    
+    #include <sys/socket.h> /* unix*/
+    #include <winsock2.h>  /* windows*/
+    int recvfrom(SOCKET s, void *buf, size_t len, int flog, struct sockaddr *from, int *fromlen);
+    int sendto(SOCKET s, const void *buf, size_t len, int flags, const struct sockaddr *to, int tolen);
+
+    int s = socket(AF_INET, SOCK_STREAM, 0);
+    connect(s, peer, sizeof(peer))
+    send(s, "1", 1, 0);
+    recv(s, buf, 1, 0);
+
+    
+    #include <sys/socket.h> /* unix*/
+    #include <winsock2.h>  /* windows*/
+    int bind(SOCKET s, const struct sockaddr *name, int namelen);
+    ---成功返回0，失败返回-1或者SOCKET_ERROR
+
+地址通常设为：INADDR_ANY
+比如你的机器有三个ip
+192.168.1.1
+202.202.202.202
+61.1.2.3
+
+如果你serv.sin_addr.s_addr=inet_addr("192.168.1.1");
+
+然后监听100端口
+
+这时其他机器只有connect 192.168.1.1:100才能成功。
+connect 202.202.202.202:100和connect 61.1.2.3:100都会失败。
+
+如果serv.sin_addr.s_addr=htonl(INADDR_ANY); 的话，无论连接哪个ip都可以连上的。
+
+    struct sockaddr_in local;
+    local.sin_family = AF_INET;
+    local.sin_port = htons(7500);
+    locol.sin_addr.s_addr = hton(INADDR_ANY);
+    bind(s,(struct sockaddr *)&local, sizeof(local));
+
+
+### 面向连接和无连接的协议的区别
+IP提供的一种尽力而为的、不可靠的无连接服务
+TCP利用无连接服务来提供可靠的面向连接的服务。
+
+- 1 首先为TCP段中数据提供校验和。
+- 2 为每个字节分配一个序列号。
+- 3 提供确认-重传机制，确保每个分段被传送到。
+
+RTO(retransmission TimeOut)定时器、。
+
+UDP提供了可选的校验和来检测数据损坏情况。
+
+### TCP是一种流协议
+
+可变长报文可用两种方法。一种是用特定的结束标记来分割。
+另外一种是在每条报文前面加上一个首部。首部至少包含下面报文的长度。
+
+###不要低估TCP的性能
+
+三步握手
+syn
+syn+ack
+ack
+
+###避免重新编写TCP协议
+对UDP提供可靠性保证，相当于重新实现TCP，没有必要。
+
+###TCP是一个可靠的，但并不是绝对可靠的协议
+网络中断
+对等实体崩溃
+对等实体主机崩溃
+怎么应对？
+
+###TCP并不是轮询的
+
+keep-alive机制
+心跳信号（可以使用一个单独的连接来发送心跳）
+
+###提防对等实体的不友好行为
+
+检测客户端终止
+检测无效输入
+
+### 理解TCP的写操作
+
+从应用程序角度看，程序对TCP连接进行写操作，写操作会在数据实际发送之前返回，常见的错误通常由下一条操作返回。
+从TCP角度看写操作：
+MSS MTU
+拥塞控制、慢启动、Nagle算法
+
+###理解TCP的有序释放操作
+shutdown操作
+    int shutdown(int s, int how)
+关闭接收器、关闭发送器、两端都关闭
+
+可以通过shutdown来进行连接的有序释放，确保没有数据丢失情况。
+
+###事件驱动
+
+select 
+tselect
+
+###TIME-WAIT状态
+主机一关闭，FIN--》   《---ack         《---FIN     ACK--》进入time-wait状态
+并停留2MSL（最大分段寿命）
+只有主动关闭一方会进入TIME-WAIT状态
+RFC将MSL定义为两分钟，但是不一定都会如此实现
+如果连接处于TIME-WAIT状态时候有分组到达，重启2MSL定时器。
+
+###服务器都应该设置SO_REUSEADDR选项
+###尽量使用大规模写代替多个小规模写
+###Connect超时
+通过select实现
+
+###避免数据复制
+进程间通信，共享内存
+
+###理解已连接的UDP
+###缓冲区长度设置的讨论
+
+##工具
+###ping
+###tcpdump
+###traceroute
+###ttcp
+###lsof
+###系统追踪工具
+bsd-->ktrace
+solaris-->truss
+linux-->strace
+
+###ICMP
+###阅读源码
+4.4BSD-Lite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

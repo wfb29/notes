@@ -1,0 +1,27 @@
+
+##实战OutOfMemory异常
+###1 堆溢出
+
+    public class Main {
+    static class OOMObject
+    {
+
+    }
+
+    public static void main(String[] args) {
+        List<OOMObject> list = new ArrayList<OOMObject>();
+        while(true)
+        {
+            list.add(new OOMObject());
+        }
+    }
+}
+
+-Xms20m
+-Xmx20m
+-XX:+HeapDumpOnOutOfMemoryError
+
+用Java visualVM或者jhat分析转储文件。
+    jhat java_pid7860.hprof
+
+
